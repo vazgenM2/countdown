@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Countdown</title>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+	<span class="warning">Not the best countdown :)</span>
+
+	<div class="home screen">
+		<div class="center">
+			<h1 class="title">Countdown to <input class="inp title_inp" type="text" placeholder="..."></h1>
+			<input type="text" class="inp time_inp" placeholder="dd/mm/yyyy"> <br>
+			<button class="show-btn">Show</button>
+		</div>
+	</div>
+
+	<div class="countdown screen">
+		<div class="center">
+			<h2 class="title">Countdown to <span class="countdown-to"></span></h2>
+			<div class="blocks">
+				<div class="block">
+					<span class="day number">0</span>
+					<p>day(s)</p>
+				</div>
+				<div class="block">
+					<span class="hour number">0</span>
+					<p>hour(s)</p>
+				</div>
+				<div class="block">
+					<span class="min number">0</span>
+					<p>minute(s)</p>
+				</div>
+				<div class="block">
+					<span class="sec number">0</span>
+					<p>secunde(s)</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script src="./code.js"></script>
+
+</html>
