@@ -24,41 +24,35 @@ showBtn.addEventListener('click', function () {
 	}
 })
 
+
 function setTime() {
-	let date = new Date()
+	let res = [0, 0, 0, 0]
+	let nowDate = new Date().getTime()
+	let clientDate = new Date(dataFromClient[2], dataFromClient[1] - 1, dataFromClient[0]).getTime()
+	let dateBySec = Math.round((clientDate - nowDate) / (1000))
 
-	let nowTime = {
-		day: date.getDate(),
-		month: date.getMonth() + 1,
-		year: date.getFullYear(),
-		hours: date.getHours(),
-		mins: date.getMinutes(),
-		secs: date.getSeconds(),
+	while (dateBySec > 86400) {
+		dateBySec -= 86400
+		res[0]++
 	}
-
-	let resultData = {
-		day: dataFromClient[0] - nowTime.day,
-		month: dataFromClient[1] - nowTime.month,
-		year: dataFromClient[2] - nowTime.year,
-		hours: 24 - nowTime.hours,
-		mins: 60 - nowTime.mins,
-		secs: 60 - nowTime.secs,
+	while (dateBySec > 3600) {
+		dateBySec -= 3600
+		res[1]++
 	}
-
-	if (resultData.secs > 0) resultData.mins -= 1
-	if (resultData.mins > 0) resultData.hours -= 1
-	if (resultData.hours > 0) resultData.day -= 1
-
-	if (resultData.year > 1) resultData.day += (resultData.year - 1) * 365
-	if (dataFromClient[1] > nowTime.month) resultData.day += resultData.month * 30
-	else {
-		resultData.day += (12 - nowTime.month + dataFromClient[1]) * 30
+	while (dateBySec > 60) {
+		dateBySec -= 60
+		res[2]++
 	}
+	res[3] = dateBySec
+	dateBySec = 0
 
-	document.querySelector('.day').innerHTML = resultData.day
-	document.querySelector('.hour').innerHTML = resultData.hours
-	document.querySelector('.min').innerHTML = resultData.mins
-	document.querySelector('.sec').innerHTML = resultData.secs
+	res.map(time => {
+		if (time < 0) time = 0
+	})
+	document.querySelector('.day').innerHTML = res[0]
+	document.querySelector('.hour').innerHTML = res[1]
+	document.querySelector('.min').innerHTML = res[2]
+	document.querySelector('.sec').innerHTML = res[3]
 }
 
 document.querySelector('.time_inp').addEventListener('input', function (e) {
