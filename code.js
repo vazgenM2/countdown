@@ -46,8 +46,8 @@ function setTime() {
 	res[3] = dateBySec
 	dateBySec = 0
 
-	res.map(time => {
-		if (time < 0) time = 0
+	res.forEach((time, i) => {
+		if (time < 0) res[i] = 0
 	})
 	document.querySelector('.day').innerHTML = res[0]
 	document.querySelector('.hour').innerHTML = res[1]
